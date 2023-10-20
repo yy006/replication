@@ -31,8 +31,28 @@ def save_csv_summary(input_filename, output_filename, num_rows=10):
 
     print(f"Results saved to {output_filename}")
 
+    import pandas as pd
+
+def save_first_10_rows(input_csv, output_csv):
+    """
+    保存するCSVファイルの先頭10行を新しいCSVファイルとして保存する関数
+
+    Parameters:
+    - input_csv: str, 読み込むCSVファイルの名前またはパス
+    - output_csv: str, 保存する新しいCSVファイルの名前またはパス
+    """
+    # CSVファイルを読み込む
+    df = pd.read_csv(input_csv)
+
+    # 先頭の10行を取得
+    df_head = df.head(10)
+
+    # 新しいCSVファイルとして保存
+    df_head.to_csv(output_csv, index=False)
+
 if __name__ == "__main__":
     input_file = 'modified_botnet.csv'
-    output_file = 'modified_botnet_summary.txt'
+    output_file = 'modified_botnet_first10rows.csv'
 
-    save_csv_summary(input_file, output_file)
+   # save_csv_summary(input_file, output_file)
+    save_first_10_rows(input_file, output_file)
