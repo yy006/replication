@@ -8,9 +8,9 @@ import numpy as np
 
 dataset_dir = os.path.dirname(os.path.abspath(__file__))
 
-vocab_file = 'vcd_first10rows.vocab.pkl'
+vocab_file = 'vcd_first100rows.vocab.pkl'
 
-file_name = 'modified_botnet_first10rows.csv'
+file_name = 'modified_botnet_first100rows.csv'
 file_path = dataset_dir + '/' + file_name
 
 def read_and_print_file_content(file_path):
@@ -62,11 +62,6 @@ def load_vocab():
     return word_to_id, id_to_word
 
 def load_data():
-    '''
-        :param data_type: 
-        :return:
-    '''
-def load_data():
     word_to_id, id_to_word = load_vocab()
     
     # CSVファイルからデータを読み込む
@@ -77,8 +72,9 @@ def load_data():
     
     # DataFrameの各要素をIDに変換
     corpus = df.applymap(lambda x: word_to_id.get(x, -1))  # -1は該当しないワードの場合のデフォルト値
+    # corpus = df.apply(lambda col: col.map(lambda x: word_to_id.get(x, -1)))
 
-    print(corpus)
+    # print(corpus)
 
     return corpus, word_to_id, id_to_word
 

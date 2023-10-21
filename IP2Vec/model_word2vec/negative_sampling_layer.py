@@ -48,6 +48,10 @@ class UnigramSampler:
             self.word_p[i] = counts[i]
 
         self.word_p = np.power(self.word_p, power)
+        if np.sum(self.word_p) == 0:
+            raise ValueError("The sum of self.word_p is zero.")
+        if np.any(np.isnan(self.word_p)) or np.any(np.isinf(self.word_p)):
+            raise ValueError("Invalid values detected in self.word_p.")
         self.word_p /= np.sum(self.word_p)
 
     def get_negative_sample(self, target):

@@ -4,7 +4,7 @@ sys.path.append('..')
 from common import config
 # GPUで実行する場合は、下記のコメントアウトを消去（要cupy）
 # ===============================================
-config.GPU = True
+# config.GPU = True
 # ===============================================
 from common.np import *
 import pickle

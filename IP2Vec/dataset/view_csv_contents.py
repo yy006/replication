@@ -45,14 +45,14 @@ def save_first_10_rows(input_csv, output_csv):
     df = pd.read_csv(input_csv)
 
     # 先頭の10行を取得
-    df_head = df.head(10)
+    df_head = df.head(100)
 
     # 新しいCSVファイルとして保存
     df_head.to_csv(output_csv, index=False)
 
 if __name__ == "__main__":
     input_file = 'modified_botnet.csv'
-    output_file = 'modified_botnet_first10rows.csv'
+    output_file = 'modified_botnet_first100rows.csv'
 
    # save_csv_summary(input_file, output_file)
     save_first_10_rows(input_file, output_file)

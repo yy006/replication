@@ -3,7 +3,7 @@ import sys
 sys.path.append('..')
 from common.np import *  # import numpy as np
 from common.layers import Embedding
-from word2vec.negative_sampling_layer import NegativeSamplingLoss
+from model_word2vec.negative_sampling_layer import NegativeSamplingLoss
 
 
 class CBOW:
