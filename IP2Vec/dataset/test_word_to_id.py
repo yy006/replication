@@ -76,7 +76,7 @@ def load_data():
 
     # print(corpus)
 
-    return corpus, word_to_id, id_to_word
+    return df, corpus, word_to_id, id_to_word
 
 
 if __name__ == "__main__":
