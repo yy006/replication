@@ -36,9 +36,12 @@ class UnigramSampler:
         self.vocab_size = None
         self.word_p = None
 
+        # print(corpus)
         counts = collections.Counter()
-        for word_id in corpus:
-            counts[word_id] += 1
+        for c in corpus:
+            for word_id in c:
+                print(word_id)
+                counts[word_id] += 1
 
         vocab_size = len(counts)
         self.vocab_size = vocab_size
@@ -47,7 +50,10 @@ class UnigramSampler:
         for i in range(vocab_size):
             self.word_p[i] = counts[i]
 
+        # print(counts)
+        # print(self.word_p)
         self.word_p = np.power(self.word_p, power)
+        # print(self.word_p)
         if np.sum(self.word_p) == 0:
             raise ValueError("The sum of self.word_p is zero.")
         if np.any(np.isnan(self.word_p)) or np.any(np.isinf(self.word_p)):

@@ -15,6 +15,7 @@ from skip_gram import SkipGram
 from common.util import create_contexts_target, to_cpu, to_gpu
 from dataset import test_word_to_id
 from preprocess import Preprocess 
+import numpy as np
 
 
 # ハイパーパラメータの設定
@@ -24,11 +25,11 @@ batch_size = 100
 max_epoch = 10
 
 # データの読み込み
-df, corpus, word_to_id, id_to_word = test_word_to_id.load_data()
+arr, corpus, word_to_id, id_to_word = test_word_to_id.load_data()
 vocab_size = len(word_to_id)
 
-preprocess = Preprocess(df, word_to_id, window_size)
-contexts, target = preprocess.generate_training_data()
+preprocess = Preprocess(arr, word_to_id, window_size)
+contexts, target = preprocess.generate_training_data_v2()
 if config.GPU:
     contexts, target = to_gpu(contexts), to_gpu(target)
 

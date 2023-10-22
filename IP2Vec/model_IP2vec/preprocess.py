@@ -1,3 +1,5 @@
+import numpy as np
+
 class Preprocess:
     def __init__(self, flows, word_to_id, window_size):
         self.flows = flows
@@ -16,10 +18,12 @@ class Preprocess:
                     if (i==1 and j==0)|(i==2 and j==0):
                         continue
                     if i!=j and j>=0 and j<len(flow):
-                        context = word_to_id[flow[j]]
+                        context = self.word_to_id[flow[j]]
                         X_train.append(center_word)
                         y_train.append(context)
         X_train = np.expand_dims(X_train, axis=0) 
         y_train = np.expand_dims(y_train, axis=0) 
-   
+
+        print(X_train)
+        print(y_train)
         return X_train, y_train

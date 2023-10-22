@@ -8,27 +8,10 @@ import numpy as np
 
 dataset_dir = os.path.dirname(os.path.abspath(__file__))
 
-vocab_file = 'vcd_first100rows.vocab.pkl'
+vocab_file = 'vcd_first1000rows_IP2Vec.vocab.pkl'
 
-file_name = 'modified_botnet_first100rows.csv'
+file_name = 'modified_botnet_first1000rows.csv'
 file_path = dataset_dir + '/' + file_name
-
-def read_and_print_file_content(file_path):
-    # テキストファイルを読み取りモードで開く
-    f = open(file_path, "r")
-
-    # ファイルの内容を読み取る
-    content = f.read()
-
-    # ファイルを閉じる
-    f.close()
-
-    # 読み取った内容を表示
-    print(content)
-
-def csv_to_dataframe(file_path):
-    df = pd.read_csv(file_path)
-    return df
 
 def load_vocab():
     vocab_path = dataset_dir + '/' + vocab_file
@@ -71,28 +54,12 @@ def load_data():
     df = df.astype(str)
     
     # DataFrameの各要素をIDに変換
-    corpus = df.applymap(lambda x: word_to_id.get(x, -1))  # -1は該当しないワードの場合のデフォルト値
+    # corpus = df.applymap(lambda x: word_to_id.get(x, -1))  # -1は該当しないワードの場合のデフォルト値
     # corpus = df.apply(lambda col: col.map(lambda x: word_to_id.get(x, -1)))
     # DataFrameをndarrayに変換
-    corpus = corpus.values
+    # corpus = corpus.values
     arr = df.values
 
     # print(corpus)
 
-    return arr, corpus, word_to_id, id_to_word
-
-
-if __name__ == "__main__":
-   # read_and_print_file_content(file_path)
-   # df = csv_to_dataframe(file_path)
-   # word_to_id, id_to_word = load_vocab(df)
-   # print("word_to_id:", word_to_id)
-   # print("id_to_word:", id_to_word)
-   corpus, word_to_id, id_to_word = load_data()
-   print(corpus)
-   print(word_to_id)
-   print(id_to_word)
-
-
-
-
+    return arr, word_to_id

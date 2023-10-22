@@ -1,4 +1,12 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
 class ip2vec(object):
+
+    def __init__(self, vocab_size, emb_size):
+        self.vocab_size = vocab_size
+        self.emb_size = emb_size
+        # 他の初期化処理があればこちらに追加
 
     def initialize_wrd_emb(self, vocab_size, emb_size):
         """
@@ -55,7 +63,7 @@ class ip2vec(object):
         
         return W, Z
 
-    def softmax(self, Z):
+    def softmax_v1(self, Z):
         """
         Z: output out of the dense layer. shape: (vocab_size, m)
         """
@@ -64,11 +72,17 @@ class ip2vec(object):
         assert(softmax_out.shape == Z.shape)
 
         return softmax_out
+    
+    def softmax_v2(self, Z):
+        Z_shifted = Z - np.max(Z, axis=0, keepdims=True)
+        softmax_out = np.divide(np.exp(Z_shifted), np.sum(np.exp(Z_shifted), axis=0, keepdims=True) + 0.001)
+        return softmax_out
+
 
     def forward_propagation(self, inds, parameters):
         word_vec = self.ind_to_word_vecs(inds, parameters)
         W, Z = self.linear_dense(word_vec, parameters)
-        softmax_out = self.softmax(Z)
+        softmax_out = self.softmax_v2(Z)
         
         caches = {}
         caches['inds'] = inds
