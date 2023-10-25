@@ -191,4 +191,8 @@ class ip2vec(object):
             plt.plot(np.arange(epochs), costs)
             plt.xlabel('# of epochs')
             plt.ylabel('cost')
+        print(parameters)
+        print(parameters['WRD_EMB'].shape)
+        print(parameters['W'].shape)
         return parameters
+

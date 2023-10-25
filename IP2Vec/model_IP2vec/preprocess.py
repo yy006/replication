@@ -24,6 +24,6 @@ class Preprocess:
         X_train = np.expand_dims(X_train, axis=0) 
         y_train = np.expand_dims(y_train, axis=0) 
 
-        print(X_train)
-        print(y_train)
+        print(X_train, X_train.shape)
+        print(y_train, y_train.shape)
         return X_train, y_train

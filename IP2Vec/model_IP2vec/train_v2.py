@@ -27,7 +27,7 @@ emb_size = 100  # これは埋め込みのサイズです。適切な値に調�
 model = ip2vec(vocab_size, emb_size)
 
 # 学習
-epochs = 100
+epochs = 5
 learning_rate = 0.01
 batch_size = 256
 parameters = model.skipgram_model_training(X_train, y_train, vocab_size, emb_size, learning_rate, epochs, batch_size=batch_size, print_cost=True, plot_cost=True)
