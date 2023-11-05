@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 class DataAnalyzer:
     def __init__(self, data_source, environment='normal'):
@@ -22,7 +24,7 @@ class DataAnalyzer:
             raise ValueError("data_source must be a filepath string or a DataFrame")
         
         # 初期分析を実行
-        self.initial_analysis()
+        # self.initial_analysis()
 
     def initial_analysis(self):
         # データの最初の5行を表示
@@ -53,11 +55,49 @@ class DataAnalyzer:
         else:
             print(f'{feature_name} is not a valid column name.')
 
+    def analyze_datetime(self, datetime_column):
+        # datetime_columnを日時型に変換し、インデックスに設定
+        self.data[datetime_column] = pd.to_datetime(self.data[datetime_column])
+        self.data.set_index(datetime_column, inplace=True)
+
+        # 日ごとのデータポイント数を計算
+        daily_counts = self.data.resample('D').size()
+
+        # 時間ごとのデータポイント数を計算
+        hourly_counts = self.data.resample('H').size()
+
+        # 日ごとのデータポイント数をプロット
+        fig, ax = plt.subplots(figsize=(15, 5))
+        ax.bar(daily_counts.index, daily_counts.values)
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        ax.ticklabel_format(style='plain', axis='y')  # 科学的表記法を無効にする
+        plt.title('日ごとのデータポイント数')
+        plt.xlabel('日付')
+        plt.ylabel('データポイント数')
+        plt.xticks(rotation=90)  # 日付ラベルを回転して表示
+        plt.show()
+
+        # 特定の日の時間ごとのデータポイント数をプロット（例：最初の日）
+        specific_day = self.data.index.date[0]
+        fig, ax = plt.subplots(figsize=(15, 5))
+        ax.bar(hourly_counts[str(specific_day)].index, hourly_counts[str(specific_day)].values)
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+        ax.ticklabel_format(style='plain', axis='y')
+        plt.title(f'{specific_day}の時間ごとのデータポイント数')
+        plt.xlabel('時間')
+        plt.ylabel('データポイント数')
+        plt.xticks(rotation=90)
+        plt.show()
+
+
+
 # 使用例
 file_path = 'CIDDS-001/traffic/OpenStack/CIDDS-001-internal-week1.csv'  # CSVファイルのパスを指定
 analyzer = DataAnalyzer(file_path)
 analyzer.show_missing_values()  # 欠損値の確認
 # analyzer.show_feature_info('feature_name')  # 特定の特徴量の情報を表示
+
+# analyzer.analyze_datetime('Date first seen')  # 日時データの分析とプロット
 
 '''
 # 使用例
