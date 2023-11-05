@@ -1,7 +1,7 @@
 import torch as th
 from torch.autograd import Variable as V
 from torch import nn,optim
-from tqdm import tqdm_notebook as tqdm
+from tqdm import tqdm
 import numpy as np
 import random
 import model
@@ -13,7 +13,7 @@ class Trainer:
         self.w2v = w2v
         self.unigram_table = self.noise(w2v,freq)
         self.vocab_size = len(w2v)
-        self.model = model.Skipgram(self.vocab_size,emb_dim).to(device)
+        self.model = model.Skipgram(self.vocab_size,emb_dim)
         self.optim = optim.Adam(self.model.parameters())
 
     def noise(self,w2v, freq):
@@ -49,9 +49,9 @@ class Trainer:
                # print("context =", context,"target =" , target)
                 self.optim.zero_grad()
                 batch_neg = self.negative_sampling(batch_size,neg_num,target)
-                context = V(th.LongTensor(context)).to(device)
-                target = V(th.LongTensor(target)).to(device)
-                batch_neg = V(th.LongTensor(batch_neg.astype(int))).to(device)
+                context = V(th.LongTensor(context))
+                target = V(th.LongTensor(target))
+                batch_neg = V(th.LongTensor(batch_neg.astype(int)))
 
                 loss = self.model(target, context, batch_neg)
                 loss.backward()
