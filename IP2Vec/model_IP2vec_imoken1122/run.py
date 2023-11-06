@@ -6,6 +6,7 @@ import trainer
 import model
 import data_preprocess
 
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 batch_size = 1024
 path = 'dataset/CIDDS-001/traffic/OpenStack/CIDDS-001-internal-week1.csv'

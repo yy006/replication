@@ -7,13 +7,16 @@ import random
 import model
 import preprocess
 # from model import Skipgram
+
+device = th.device('cuda:0' if th.cuda.is_available() else 'cpu')
+
 class Trainer:
     def __init__(self,w2v,v2w,freq,emb_dim):
         self.v2w = v2w
         self.w2v = w2v
         self.unigram_table = self.noise(w2v,freq)
         self.vocab_size = len(w2v)
-        self.model = model.Skipgram(self.vocab_size,emb_dim)
+        self.model = model.Skipgram(self.vocab_size,emb_dim).to(device)
         self.optim = optim.Adam(self.model.parameters())
 
     def noise(self,w2v, freq):
@@ -49,9 +52,9 @@ class Trainer:
                # print("context =", context,"target =" , target)
                 self.optim.zero_grad()
                 batch_neg = self.negative_sampling(batch_size,neg_num,target)
-                context = V(th.LongTensor(context))
-                target = V(th.LongTensor(target))
-                batch_neg = V(th.LongTensor(batch_neg.astype(int)))
+                context = V(th.LongTensor(context)).to(device)
+                target = V(th.LongTensor(target)).to(device)
+                batch_neg = V(th.LongTensor(batch_neg.astype(int))).to(device)
 
                 loss = self.model(target, context, batch_neg)
                 loss.backward()
