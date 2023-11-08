@@ -17,6 +17,7 @@ class Trainer:
         self.unigram_table = self.noise(w2v,freq)
         self.vocab_size = len(w2v)
         self.model = model.Skipgram(self.vocab_size,emb_dim).to(device)
+       # self.model = model.Skipgram(self.vocab_size,emb_dim)
         self.optim = optim.Adam(self.model.parameters())
 
     def noise(self,w2v, freq):
@@ -55,6 +56,9 @@ class Trainer:
                 context = V(th.LongTensor(context)).to(device)
                 target = V(th.LongTensor(target)).to(device)
                 batch_neg = V(th.LongTensor(batch_neg.astype(int))).to(device)
+               # context = V(th.LongTensor(context))
+               # target = V(th.LongTensor(target))
+               # batch_neg = V(th.LongTensor(batch_neg.astype(int)))
 
                 loss = self.model(target, context, batch_neg)
                 loss.backward()
