@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # ファイルパスを適切に設定してください
 dataset = "CIDDS-001" # CTU-13_Scenario
-file_path = f'result/{dataset}/model_w2v_v2w_1000.pth'
+file_path = f'result/{dataset}/pth_model_w2v_v2w/model_w2v_v2w_10000.pth'
 
 # ファイルをロード
 saved_data = torch.load(file_path, map_location=torch.device('cpu'))
@@ -32,6 +32,11 @@ print(f'Noise points: {n_noise}')
 # t-SNE結果をプロット
 plt.figure(figsize=(12, 8))
 plt.scatter(tsne_results[:, 0], tsne_results[:, 1], c=dbscan_labels, cmap='viridis', marker='.')
+'''
+# データポイントのインデックスまたはラベルを表示（サンプルサイズが小さい場合）
+for i, txt in enumerate(range(len(tsne_results))):
+    plt.annotate(txt, (tsne_results[i, 0], tsne_results[i, 1]), fontsize=8)
+'''
 plt.title('t-SNE and DBSCAN Clustering')
 plt.xlabel('t-SNE axis 1')
 plt.ylabel('t-SNE axis 2')
