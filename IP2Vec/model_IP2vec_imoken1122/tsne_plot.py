@@ -8,7 +8,7 @@ from sklearn.cluster import DBSCAN
 
 # ファイルをロード
 dataset = "CIDDS-001" # CTU-13_Scenario
-file_path = f'result/{dataset}/pth_model_w2v_v2w/exweek3/model_w2v_v2w_exweek3_500000.pth'
+file_path = f'result/{dataset}/pth_model_w2v_v2w/exweek4/model_w2v_v2w_exweek4_500000.pth'
 
 saved_data = torch.load(file_path, map_location=torch.device('cpu'))
 
@@ -44,7 +44,8 @@ fig = px.scatter(df, x='x', y='y', color='word',
                  hover_data=['word'], title='Filtered IP Address t-SNE')
 
 # 特定のワードリストを定義
-attacker = ['ATTACKER1', 'ATTACKER2']
+#attacker = ['ATTACKER1', 'ATTACKER2']
+attacker = ['ATTACKER3']
 normal = ['EXT_SERVER', 'OPENSTACK_NET']
 unknown = ['32158_172', '32183_156', '27561_114', '30921_152']
 suspicious = ['10006_27', '29376_114', '17800_126', '32955_29', '14105_26']
@@ -68,13 +69,6 @@ df['category'] = df['word'].apply(assign_category)
 # インタラクティブなプロットを作成（'category' カラムに基づいて色を設定）
 fig = px.scatter(df, x='x', y='y', color='category',
                  hover_data=['word'])
-
-# プロットを表示
-fig.show()
-
-
-# プロットを表示
-fig.show()
 
 
 # プロットを表示

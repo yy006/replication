@@ -171,7 +171,7 @@ class DataAnalyzer:
 
 
 # 使用例
-file_path = 'CIDDS-001/traffic/ExternalServer/CIDDS-001-external-week3.csv'  # CSVファイルのパスを指定
+file_path = 'CIDDS-001/traffic/ExternalServer/CIDDS-001-external-week4.csv'  # CSVファイルのパスを指定
 analyzer = DataAnalyzer(file_path)
 # analyzer.show_missing_values()  # 欠損値の確認
 # analyzer.show_feature_info('feature_name')  # 特定の特徴量の情報を表示
