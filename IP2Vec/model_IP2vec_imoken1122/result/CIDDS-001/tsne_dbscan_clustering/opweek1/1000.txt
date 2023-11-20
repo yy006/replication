@@ -1,0 +1,72 @@
+1000
+TSNE(n_components=2, verbose=1, perplexity=40, n_iter=300)
+DBSCAN(eps=0.5, min_samples=5)
+[t-SNE] Computing 121 nearest neighbors...
+[t-SNE] Indexed 318 samples in 0.001s...
+[t-SNE] Computed neighbors for 318 samples in 0.256s...
+[t-SNE] Computed conditional probabilities for sample 318 / 318
+[t-SNE] Mean sigma: 0.489081
+[t-SNE] KL divergence after 250 iterations with early exaggeration: 48.652363
+[t-SNE] KL divergence after 300 iterations: 0.218456
+Identified clusters: 17
+Noise points: 115
+
+10000
+TSNE(n_components=2, verbose=1, perplexity=40, n_iter=300)
+DBSCAN(eps=0.5, min_samples=5)
+[t-SNE] Computing 121 nearest neighbors...
+[t-SNE] Indexed 2148 samples in 0.000s...
+[t-SNE] Computed neighbors for 2148 samples in 0.341s...
+[t-SNE] Computed conditional probabilities for sample 1000 / 2148
+[t-SNE] Computed conditional probabilities for sample 2000 / 2148
+[t-SNE] Computed conditional probabilities for sample 2148 / 2148
+[t-SNE] Mean sigma: 0.184487
+[t-SNE] KL divergence after 250 iterations with early exaggeration: 58.813866
+[t-SNE] KL divergence after 300 iterations: 1.654575
+Identified clusters: 30
+Noise points: 28
+
+500000
+[t-SNE] Computing 121 nearest neighbors...
+[t-SNE] Indexed 32576 samples in 0.002s...
+[t-SNE] Computed neighbors for 32576 samples in 1.784s...
+[t-SNE] Computed conditional probabilities for sample 1000 / 32576
+[t-SNE] Computed conditional probabilities for sample 2000 / 32576
+[t-SNE] Computed conditional probabilities for sample 3000 / 32576
+[t-SNE] Computed conditional probabilities for sample 4000 / 32576
+[t-SNE] Computed conditional probabilities for sample 5000 / 32576
+[t-SNE] Computed conditional probabilities for sample 6000 / 32576
+[t-SNE] Computed conditional probabilities for sample 7000 / 32576
+[t-SNE] Computed conditional probabilities for sample 8000 / 32576
+[t-SNE] Computed conditional probabilities for sample 9000 / 32576
+[t-SNE] Computed conditional probabilities for sample 10000 / 32576
+[t-SNE] Computed conditional probabilities for sample 11000 / 32576
+[t-SNE] Computed conditional probabilities for sample 12000 / 32576
+[t-SNE] Computed conditional probabilities for sample 13000 / 32576
+[t-SNE] Computed conditional probabilities for sample 14000 / 32576
+[t-SNE] Computed conditional probabilities for sample 15000 / 32576
+[t-SNE] Computed conditional probabilities for sample 16000 / 32576
+[t-SNE] Computed conditional probabilities for sample 17000 / 32576
+[t-SNE] Computed conditional probabilities for sample 18000 / 32576
+[t-SNE] Computed conditional probabilities for sample 19000 / 32576
+[t-SNE] Computed conditional probabilities for sample 20000 / 32576
+[t-SNE] Computed conditional probabilities for sample 21000 / 32576
+[t-SNE] Computed conditional probabilities for sample 22000 / 32576
+[t-SNE] Computed conditional probabilities for sample 23000 / 32576
+[t-SNE] Computed conditional probabilities for sample 24000 / 32576
+[t-SNE] Computed conditional probabilities for sample 25000 / 32576
+[t-SNE] Computed conditional probabilities for sample 26000 / 32576
+[t-SNE] Computed conditional probabilities for sample 27000 / 32576
+[t-SNE] Computed conditional probabilities for sample 28000 / 32576
+[t-SNE] Computed conditional probabilities for sample 29000 / 32576
+[t-SNE] Computed conditional probabilities for sample 30000 / 32576
+[t-SNE] Computed conditional probabilities for sample 31000 / 32576
+[t-SNE] Computed conditional probabilities for sample 32000 / 32576
+[t-SNE] Computed conditional probabilities for sample 32576 / 32576
+[t-SNE] Mean sigma: 0.212480
+[t-SNE] KL divergence after 250 iterations with early exaggeration: 96.780960
+[t-SNE] KL divergence after 300 iterations: 3.716642
+Identified clusters: 4
+Noise points: 1
+2023-11-10T00:41:01.862ZE [7780:NonCelloThread] thumbnail_util_win.cc:115:LoadBitmapFromPngResource Can't find PNG resource 0.
+2023-11-10T00:41:01.863ZI [7780:NonCelloThread] ctxmenu.cc:213:GenerateContextMenu Received context menu with 0 menu items.

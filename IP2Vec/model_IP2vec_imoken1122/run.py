@@ -10,10 +10,10 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 #device = torch.device('cpu')
 
 batch_size = 1024
-path = 'dataset/CIDDS-001/traffic/OpenStack/CIDDS-001-internal-week1.csv'
+path = 'dataset/CIDDS-001/traffic/ExternalServer/CIDDS-001-external-week4.csv'
 preprocessor = data_preprocess.DataPreprocessor(path)
 features_to_include = ['Src IP Addr', 'Dst IP Addr', 'Proto', 'Src Pt', 'Dst Pt', 'class', 'attackType', 'attackID', 'attackDescription']
-processed_df = preprocessor.preprocess(num_rows=500000, features=features_to_include)
+processed_df = preprocessor.preprocess(num_rows=500000, features=features_to_include) #start_date="2017-03-16 00:00:00"
 
 X = processed_df.iloc[:, :5] # 文脈には5列だけ使う
 d = X.to_numpy()
@@ -26,7 +26,7 @@ train = preprocess._data_loader(corpus, batch_size)
 #print(train)
 
 model = trainer.Trainer(w2v,v2w,freq,emb_dim=32)
-model.fit(data = train,max_epoch=50,batch_size=256,neg_num=10)
+model.fit(data = train,max_epoch=50,batch_size=256,neg_num=10, patience_limit=4)
 
 # モデルの状態辞書を取得
 model_state = model.model.state_dict()
@@ -39,4 +39,4 @@ save_dict = {
 }
 
 # 辞書を.pthファイルとして保存
-torch.save(save_dict, 'model_w2v_v2w_500000.pth')
+torch.save(save_dict, 'model_w2v_v2w_exweek4_500000.pth')

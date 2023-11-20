@@ -19,6 +19,8 @@ class Trainer:
         self.model = model.Skipgram(self.vocab_size,emb_dim).to(device)
        # self.model = model.Skipgram(self.vocab_size,emb_dim)
         self.optim = optim.Adam(self.model.parameters())
+        self.best_loss = float('inf')  # 最初のbest_lossを無限大に設定
+        self.patience = 0
 
     def noise(self,w2v, freq):
         unigram_table = []
@@ -39,7 +41,7 @@ class Trainer:
             neg = np.vstack([neg,sample])
         return neg[1:batch_size+1]
 
-    def fit(self,data,max_epoch,batch_size,neg_num):
+    def fit(self,data,max_epoch,batch_size,neg_num, patience_limit=4):
         run_losses = []
         for epoch in range(max_epoch):
             run_loss = 0
@@ -66,6 +68,15 @@ class Trainer:
                 run_loss += loss.cpu().item()
             run_losses.append(run_loss/len(data))
             print("epoch:", epoch,"run_loss:", run_loss)
+            if run_loss < self.best_loss:
+                self.best_loss = run_loss
+                self.patience = 0
+            else:
+                self.patience += 1
+                if self.patience >= patience_limit:
+                    print(f"Early stopping triggered at epoch {epoch}")
+                    break  # 早期終了
+
         return run_losses
     def most_similar(self,word,top):
         W = self.model.state_dict()["u_embedding.weight"]

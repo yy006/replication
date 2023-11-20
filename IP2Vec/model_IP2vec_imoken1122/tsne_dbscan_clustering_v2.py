@@ -8,7 +8,7 @@ from sklearn.cluster import DBSCAN
 
 # ファイルをロード
 dataset = "CIDDS-001" # CTU-13_Scenario
-file_path = f'result/{dataset}/pth_model_w2v_v2w/model_w2v_v2w_500000.pth'
+file_path = f'result/{dataset}/pth_model_w2v_v2w/exweek3/model_w2v_v2w_exweek3_500000.pth'
 
 saved_data = torch.load(file_path, map_location=torch.device('cpu'))
 
@@ -42,5 +42,20 @@ df['cluster'] = dbscan_labels
 
 fig = px.scatter(df, x='x', y='y', color='cluster',
                  hover_data=['word'], title='Filtered IP Address t-SNE and DBSCAN Clustering')
+# 強調表示するワードのリスト
+highlight_words = ['EXT_SERVER', 'ATTACKER2', 'ATTACKER1']
+
+# 強調表示するワードをデータフレームから見つける
+highlight_df = df[df['word'].isin(highlight_words)]
+
+# これらのポイントを強調してプロットに追加
+for word, row in highlight_df.iterrows():
+    fig.add_trace(go.Scatter(x=[row['x']], y=[row['y']],
+                             text=[row['word']],
+                             mode='markers+text',
+                             textposition='top center',
+                             marker=dict(size=10, color='LightSkyBlue', line=dict(width=2, color='DarkSlateGrey')),
+                             showlegend=False))
+
 # プロットを表示
 fig.show()
