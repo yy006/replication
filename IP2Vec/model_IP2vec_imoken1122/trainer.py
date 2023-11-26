@@ -41,7 +41,7 @@ class Trainer:
             neg = np.vstack([neg,sample])
         return neg[1:batch_size+1]
 
-    def fit(self,data,max_epoch,batch_size,neg_num, patience_limit=4):
+    def fit(self,data,max_epoch,batch_size,neg_num, patience_limit=4, save_every=1, save_path='model_checkpoint'):
         run_losses = []
         for epoch in range(max_epoch):
             run_loss = 0
@@ -66,6 +66,10 @@ class Trainer:
                 loss.backward()
                 self.optim.step()
                 run_loss += loss.cpu().item()
+            
+            # 指定された間隔でモデルを保存
+            if (epoch + 1) % save_every == 0:
+                self.save_model(epoch, save_path)
             run_losses.append(run_loss/len(data))
             print("epoch:", epoch,"run_loss:", run_loss)
             if run_loss < self.best_loss:
@@ -78,6 +82,17 @@ class Trainer:
                     break  # 早期終了
 
         return run_losses
+    def save_model(self, epoch, save_path):
+        model_state = self.model.state_dict()
+        save_dict = {
+            'model_state': model_state,
+            'w2v': self.w2v,
+            'v2w': self.v2w,
+            'epoch': epoch
+        }
+        th.save(save_dict, f'{save_path}_epoch_{epoch}.pth')
+        print(f'Model saved for epoch {epoch}')
+
     def most_similar(self,word,top):
         W = self.model.state_dict()["u_embedding.weight"]
         idx = w2v[word]
