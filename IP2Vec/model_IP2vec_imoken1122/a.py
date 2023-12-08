@@ -19,7 +19,7 @@ import model
 import data_preprocess
 
 import re
-
+'''
 # 以下のコードは、選択した列で特定の条件を満たす行をフィルタリングし、それらの行を表示します。
 
 # 正規表現パターン: 192.168.x.y で、yは0から16まで
@@ -39,3 +39,5 @@ ip_counts = filtered_df['Src IP Addr'].value_counts()
 
 # 結果を表示
 print(ip_counts)
+'''
+print(torch.cuda.is_available())

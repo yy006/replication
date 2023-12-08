@@ -24,7 +24,7 @@ class DataAnalyzer:
             raise ValueError("data_source must be a filepath string or a DataFrame")
         
         # 初期分析を実行
-        # self.initial_analysis()
+        self.initial_analysis()
 
     def initial_analysis(self):
         # データの最初の5行を表示
@@ -171,7 +171,9 @@ class DataAnalyzer:
 
 
 # 使用例
-file_path = 'CIDDS-001/traffic/ExternalServer/CIDDS-001-external-week4.csv'  # CSVファイルのパスを指定
+# file_path = 'CIDDS-001/traffic/ExternalServer/CIDDS-001-external-week4.csv'  # CSVファイルのパスを指定
+# 以下のファイルをcsvに変換する
+file_path = 'CTU-13_Scenario-50/capture20110817.pcap.netflow.labeled.csv'  # CSVファイルのパスを指定
 analyzer = DataAnalyzer(file_path)
 # analyzer.show_missing_values()  # 欠損値の確認
 # analyzer.show_feature_info('feature_name')  # 特定の特徴量の情報を表示

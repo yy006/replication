@@ -13,7 +13,7 @@ processed_df = preprocessor.preprocess(num_rows=10000000, features=features_to_i
 
 # pthファイルパスの設定
 dataset = "CIDDS-001" # CTU-13_Scenario
-file_path = f'result/{dataset}/pth_model_w2v_v2w/opweek1/model_checkpoint_epoch_0.pth'
+file_path = f'result/{dataset}/pth_model_w2v_v2w/opweek1/model_w2v_v2w_500000_0316_epoch10.pth'
 
 # ファイルをロード
 saved_data = torch.load(file_path, map_location=torch.device('cpu'))
