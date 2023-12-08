@@ -17,7 +17,7 @@ preprocessor = data_preprocess.DataPreprocessor(path)
 features_to_include = ['Src IP Addr', 'Dst IP Addr', 'Proto', 'Src Pt', 'Dst Pt', 'class', 'attackType', 'attackID', 'attackDescription']
 processed_df = preprocessor.preprocess(num_rows=10000000, features=features_to_include) #start_date="2017-03-16 00:00:00"
 '''
-processed_df = preprocessor.preprocess(num_rows=10000000) #start_date="2017-03-16 00:00:00"
+processed_df = preprocessor.preprocess(num_rows=100000000) #start_date="2017-03-16 00:00:00"
 
 
 X = processed_df.iloc[:, :5] # 文脈には5列だけ使う
@@ -45,4 +45,4 @@ save_dict = {
 }
 
 # 辞書を.pthファイルとして保存
-torch.save(save_dict, 'model_w2v_v2w_CTU13_1000.pth')
+torch.save(save_dict, 'model_w2v_v2w_CTU13_all.pth')
