@@ -159,11 +159,11 @@ class Data:
                 mask, oob = self._context_mask(len(targets))
                 # Use mode="clip" with np.take so that the oob indices don't cause a
                 # failure. Set the oob word indices to -1.
-                contexts = np.take(targets, mask, mode="clip")
+                contexts = np.take(targets, mask, mode="clip") # 必要ない
                 contexts[oob] = -1
                 batch_targets.append(targets)
                 batch_contexts.append(contexts)
-                batch_times.append(np.repeat(t, len(targets)))
+                batch_times.append(np.repeat(t, len(targets))) # targetリストの中身をtimeに変換したものを渡せばよさそう
             batch_targets = np.concatenate(batch_targets)
             batch_contexts = np.concatenate(batch_contexts)
             batch_times = np.concatenate(batch_times)
