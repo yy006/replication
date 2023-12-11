@@ -1,0 +1,11 @@
+(502253, 32)
+[t-SNE] Computing 31 nearest neighbors...
+[t-SNE] Indexed 1181 samples in 0.000s...
+[t-SNE] Computed neighbors for 1181 samples in 0.297s...
+[t-SNE] Computed conditional probabilities for sample 1000 / 1181
+[t-SNE] Computed conditional probabilities for sample 1181 / 1181
+[t-SNE] Mean sigma: 0.020218
+[t-SNE] KL divergence after 250 iterations with early exaggeration: 75.619614
+[t-SNE] KL divergence after 1500 iterations: 1.696499
+2023-12-11T18:39:54.516ZE [22912:NonCelloThread] thumbnail_util_win.cc:115:LoadBitmapFromPngResource Can't find PNG resource 0.
+2023-12-11T18:39:54.520ZI [22912:NonCelloThread] ctxmenu.cc:213:GenerateContextMenu Received context menu with 0 menu items.

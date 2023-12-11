@@ -21,7 +21,7 @@ class DataPreprocessor:
         else:
             raise ValueError("data_source must be a filepath string or a DataFrame")
         
-    def preprocess(self, num_rows=None, start_date=None):
+    def preprocess_CTU13(self, num_rows=None, start_date=None):
         """
         データの前処理を行うメソッド
         :param num_rows: 取得する行数
@@ -31,18 +31,18 @@ class DataPreprocessor:
         """
         df = self.data
 
-        # 日付に基づいてフィルタリング
+        # 時刻に基づいてフィルタリング
         if start_date is not None:
-            df['Date first seen'] = pd.to_datetime(df['Date first seen'])
+            df['flow_start'] = pd.to_datetime(df['flow_start'])
             start_date = pd.to_datetime(start_date)
-            df = df[df['Date first seen'] >= start_date]
+            df = df[df['flow_start'] >= start_date]
 
         # 行数の制限
         if num_rows is not None:
             df = df.head(num_rows)
 
         # 特徴量に基づいて列を並べ替え
-        features = ['Src IP Addr', 'Dst IP Addr', 'Proto', 'Src Pt', 'Dst Pt']
+        features = ['Src IP Addr', 'Dst IP Addr', 'Proto', 'Src Pt', 'Dst Pt', 'flow_start', 'class']
         df = df[features]
 
         return df

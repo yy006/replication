@@ -17,8 +17,8 @@ preprocessor = data_preprocess.DataPreprocessor(path)
 features_to_include = ['Src IP Addr', 'Dst IP Addr', 'Proto', 'Src Pt', 'Dst Pt', 'class', 'attackType', 'attackID', 'attackDescription']
 processed_df = preprocessor.preprocess(num_rows=10000000, features=features_to_include) #start_date="2017-03-16 00:00:00"
 '''
-processed_df = preprocessor.preprocess(num_rows=100000000) #start_date="2017-03-16 00:00:00"
-
+processed_df = preprocessor.preprocess_CTU13(num_rows=100000000) #start_date="2017-03-16 00:00:00"
+processed_df = preprocessor.preprocess_CTU13(num_rows=100000000) #start_date="2017-03-16 00:00:00"
 
 X = processed_df.iloc[:, :5] # 文脈には5列だけ使う
 print(X)

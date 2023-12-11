@@ -8,7 +8,7 @@ import data_preprocess
 path = 'dataset/CIDDS-001/traffic/OpenStack/CIDDS-001-internal-week1.csv'
 preprocessor = data_preprocess.DataPreprocessor(path)
 features_to_include = ['Src IP Addr', 'Dst IP Addr', 'Proto', 'Src Pt', 'Dst Pt', 'class', 'attackType', 'attackID', 'attackDescription']
-processed_df = preprocessor.preprocess(num_rows=10000000, features=features_to_include) #start_date="2017-03-16 00:00:00"
+processed_df = preprocessor.preprocess(num_rows=10000000) #start_date="2017-03-16 00:00:00"
 
 
 # pthファイルパスの設定
@@ -100,7 +100,7 @@ indices = [i for i, word in v2w.items() if word in ip_ranges]
 filtered_embeddings = embeddings[indices]
 
 # perplexityの値をフィルタリングされたサンプル数に合わせて調整
-perplexity_value = min(30, len(filtered_embeddings) - 1)  # 30 または サンプル数-1 の小さい方を使用
+# perplexity_value = min(30, len(filtered_embeddings) - 1)  # 30 または サンプル数-1 の小さい方を使用
 
 '''
 # t-SNEで次元削減

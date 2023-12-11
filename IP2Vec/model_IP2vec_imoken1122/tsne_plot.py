@@ -7,8 +7,10 @@ from sklearn.manifold import TSNE
 from sklearn.cluster import DBSCAN
 
 # ファイルをロード
-dataset = "CIDDS-001" # CTU-13_Scenario
-file_path = f'result/{dataset}/pth_model_w2v_v2w/exweek4/model_w2v_v2w_exweek4_500000.pth'
+# dataset = "CIDDS-001" 
+dataset = "CTU-13_Scenario-50"
+# file_path = f'result/{dataset}/pth_model_w2v_v2w/exweek4/model_w2v_v2w_exweek4_500000.pth'
+file_path = f'result/{dataset}/model_checkpoint_epoch_0.pth'
 
 saved_data = torch.load(file_path, map_location=torch.device('cpu'))
 
